@@ -2,6 +2,8 @@ package com.example.simplecalculator;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,9 +14,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.text.DecimalFormat;
+
 public class MainActivity extends AppCompatActivity {
     Button btnAdd, btnSub, btnMulti, btnDiv, btnAc, btnPercentage, btn1, btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn0,btnDot,btnBackspace,btnEqualToo;
-    EditText txtResult;
+    TextView txtResult;
+    View cursorView;
+    Animation blinkAnimation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
         btnBackspace = findViewById(R.id.btnBackSpace);
         btnEqualToo = findViewById(R.id.btnEqualToo);
         txtResult = findViewById(R.id.txtResult);
-        txtResult.requestFocus();
+        cursorView = findViewById(R.id.cursorView);
+        blinkAnimation = AnimationUtils.loadAnimation(this,R.anim.blink);
+        cursorView.startAnimation(blinkAnimation);
         btnAc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,96 +58,96 @@ public class MainActivity extends AppCompatActivity {
         btnPercentage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText("%");
+                txtResult.setText(txtResult.getText().toString()+"%");
             }
         });
         btnDiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText("/");
+                txtResult.setText(txtResult.getText().toString()+"/");
             }
         });
         btnMulti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText("x");
+                txtResult.setText(txtResult.getText().toString()+"x");
             }
         });
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText("+");
+                txtResult.setText(txtResult.getText().toString()+"+");
             }
         });
         btnSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText("-");
+                txtResult.setText(txtResult.getText().toString()+"-");
             }
         });
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText("1");
+                txtResult.setText(txtResult.getText().toString()+"1");
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText("2");
+                txtResult.setText(txtResult.getText().toString()+"2");
             }
         });
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText("3");
+                txtResult.setText(txtResult.getText().toString()+"3");
             }
         });
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText("4");
+                txtResult.setText(formatNumber(txtResult.getText().toString()+"4"));
             }
         });
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText("5");
+                txtResult.setText(txtResult.getText().toString()+"5");
             }
         });
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText("6");
+                txtResult.setText(txtResult.getText().toString()+"6");
             }
         });
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText("7");
+                txtResult.setText(txtResult.getText().toString()+"7");
             }
         });btn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText("8");
+                txtResult.setText(txtResult.getText().toString()+"8");
             }
         });
         btn9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText("9");
+                txtResult.setText(txtResult.getText().toString()+"9");
             }
         });
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText("0");
+                txtResult.setText(txtResult.getText().toString()+"0");
             }
         });
         btnDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText(".");
+                txtResult.setText(txtResult.getText().toString()+".");
             }
         });
         btnBackspace.setOnClickListener(new View.OnClickListener() {
@@ -156,47 +164,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//
-//
-//        btnAdd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                int num1 = Integer.parseInt(edtFirst.getText().toString());
-//                int num2= Integer.parseInt(edtSecond.getText().toString());
-//                txtResult.setText(String.valueOf(num1+num2));
-//            }
-//        });
-//        btnSub.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                int num1 = Integer.parseInt(edtFirst.getText().toString());
-//                int num2= Integer.parseInt(edtSecond.getText().toString());
-//                txtResult.setText(String.valueOf(num1-num2));
-//            }
-//        });
-//        btnMulti.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                int num1 = Integer.parseInt(edtFirst.getText().toString());
-//                int num2= Integer.parseInt(edtSecond.getText().toString());
-//                txtResult.setText(String.valueOf(num1*num2));
-//            }
-//        });
-//        btnDiv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                float num1 = Integer.parseInt(edtFirst.getText().toString());
-//                float num2= Integer.parseInt(edtSecond.getText().toString());
-//                txtResult.setText(String.valueOf(num1/num2));
-//            }
-//        });
-
-
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+    private String formatNumber(String number) {
+        if (number.isEmpty() || number.equals(".")) {
+            return "";
+        }
+        try {
+            String cleanString = number.replace(",", "");
+            double parsed = Double.parseDouble(cleanString);
+            DecimalFormat formatter = new DecimalFormat("#,###");
+            return formatter.format(parsed);
+
+        } catch (NumberFormatException e) {
+            return number;
+        }
     }
 }
