@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         btnAc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText("");
+                txtResult.setText("0");
             }
         });
         btnPercentage.setOnClickListener(new View.OnClickListener() {
@@ -88,19 +88,19 @@ public class MainActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText(txtResult.getText().toString()+"1");
+                txtResult.setText(formatNumber(txtResult.getText().toString()+"1"));
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText(txtResult.getText().toString()+"2");
+                txtResult.setText(formatNumber(txtResult.getText().toString()+"2"));
             }
         });
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText(txtResult.getText().toString()+"3");
+                txtResult.setText(formatNumber(txtResult.getText().toString()+"3"));
             }
         });
         btn4.setOnClickListener(new View.OnClickListener() {
@@ -112,36 +112,36 @@ public class MainActivity extends AppCompatActivity {
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText(txtResult.getText().toString()+"5");
+                txtResult.setText(formatNumber(txtResult.getText().toString()+"5"));
             }
         });
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText(txtResult.getText().toString()+"6");
+                txtResult.setText(formatNumber(txtResult.getText().toString()+"6"));
             }
         });
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText(txtResult.getText().toString()+"7");
+                txtResult.setText(formatNumber(txtResult.getText().toString()+"7"));
             }
         });btn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText(txtResult.getText().toString()+"8");
+                txtResult.setText(formatNumber(txtResult.getText().toString()+"8"));
             }
         });
         btn9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText(txtResult.getText().toString()+"9");
+                txtResult.setText(formatNumber(txtResult.getText().toString()+"9"));
             }
         });
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText(txtResult.getText().toString()+"0");
+                txtResult.setText(formatNumber(txtResult.getText().toString()+"0"));
             }
         });
         btnDot.setOnClickListener(new View.OnClickListener() {
@@ -159,8 +159,10 @@ public class MainActivity extends AppCompatActivity {
         btnEqualToo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtResult.setText("");
-
+                String exp = txtResult.getText().toString();
+                String cleanExp = exp.replace(",","").replace("x","*");
+                String result = onEqual(cleanExp);
+                txtResult.setText(result);
             }
         });
 
@@ -170,18 +172,49 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
     }
-    private String formatNumber(String number) {
-        if (number.isEmpty() || number.equals(".")) {
-            return "";
-        }
-        try {
-            String cleanString = number.replace(",", "");
-            double parsed = Double.parseDouble(cleanString);
-            DecimalFormat formatter = new DecimalFormat("#,###");
-            return formatter.format(parsed);
+    private String formatNumber(String expression) {
+        String[] parts = expression.split("(?<=[-+X/])|(?=[-+X/])");
+        StringBuilder formattedExpression = new StringBuilder();
 
-        } catch (NumberFormatException e) {
-            return number;
+        for (String part : parts) {
+            if (part.matches("[-+X/]")) {
+                formattedExpression.append(part);
+            } else {
+                try {
+                    String cleanPart = part.replace(",", "");
+                    if (!cleanPart.isEmpty()) {
+                        double parsed = Double.parseDouble(cleanPart);
+                        DecimalFormat formatter = new DecimalFormat("#,###");
+                        formattedExpression.append(formatter.format(parsed));
+                    }
+                } catch (NumberFormatException e) {
+                    formattedExpression.append(part);
+                }
+            }
+        }
+        return formattedExpression.toString();
+    }
+    private String onEqual(String expression) {
+        String[] numbers = expression.split("[-+*/]");
+        String operators = expression.replaceAll("[0-9.]", "");
+        double result = Double.parseDouble(numbers[0]);
+        for (int i = 0; i < operators.length(); i++) {
+            char op = operators.charAt(i);
+            double nextNumber = Double.parseDouble(numbers[i + 1]);
+            if (op == '+') {
+                result += nextNumber;
+            } else if (op == '-') {
+                result -= nextNumber;
+            } else if (op == '*') {
+                result *= nextNumber;
+            } else if (op == '/') {
+                result /= nextNumber;
+            }
+        }
+        if (result == (long) result) {
+            return String.valueOf((long) result);
+        } else {
+            return String.valueOf(result);
         }
     }
 }
