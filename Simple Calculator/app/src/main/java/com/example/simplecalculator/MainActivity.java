@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                 String exp = txtResult.getText().toString();
                 String cleanExp = exp.replace(",","").replace("x","*");
                 String result = onEqual(cleanExp);
-                txtResult.setText(result);
+                txtResult.setText(formatNumber(result));
             }
         });
 
@@ -173,11 +173,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private String formatNumber(String expression) {
-        String[] parts = expression.split("(?<=[-+X/])|(?=[-+X/])");
+        String[] parts = expression.split("(?<=[-+X/.])|(?=[-+X/.])");
         StringBuilder formattedExpression = new StringBuilder();
 
         for (String part : parts) {
-            if (part.matches("[-+X/]")) {
+            if (part.matches("[-+X/.]")) {
                 formattedExpression.append(part);
             } else {
                 try {
