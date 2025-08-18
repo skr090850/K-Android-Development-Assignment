@@ -126,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 txtResult.setText(formatNumber(txtResult.getText().toString()+"7"));
             }
-        });btn8.setOnClickListener(new View.OnClickListener() {
+        });
+        btn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 txtResult.setText(formatNumber(txtResult.getText().toString()+"8"));
@@ -162,7 +163,8 @@ public class MainActivity extends AppCompatActivity {
                 String exp = txtResult.getText().toString();
                 String cleanExp = exp.replace(",","").replace("x","*");
                 String result = onEqual(cleanExp);
-                txtResult.setText(formatNumber(result));
+//                txtResult.setTextSize(25);
+                txtResult.setText(exp+"\n"+formatNumber(result));
             }
         });
 
