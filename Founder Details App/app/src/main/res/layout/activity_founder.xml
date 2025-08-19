@@ -13,8 +13,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Heading"
-        android:textSize="35dp"
+        android:textSize="30dp"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:gravity="center"
@@ -44,6 +43,7 @@
             android:textSize="20dp"
             android:textColor="@color/black"
             android:padding="10dp"
+            android:id="@+id/founder_decs"
 
             />
 

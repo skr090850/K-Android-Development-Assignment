@@ -1,6 +1,7 @@
 package com.example.founderdetailsapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         Item currentItem = itemList.get(position);
         holder.imageView.setImageResource(currentItem.getImage());
         holder.titleView.setText(currentItem.getTitle());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, Founder.class);
+                intent.putExtra("IMAGE_KEY",currentItem.getImage());
+                intent.putExtra("TITLE_KEY",currentItem.getTitle());
+                intent.putExtra("DECS_KEY",currentItem.getDecs());
+                context.startActivity(intent);
+            }
+        });
     }
 
     public int getItemCount() {
