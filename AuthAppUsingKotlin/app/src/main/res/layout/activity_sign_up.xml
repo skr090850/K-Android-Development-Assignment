@@ -3,8 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SignUpActivity">
+    <TextView
 
+        android:id="@+id/signUpTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Sign Up"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_mono_bold"
+        android:padding="10dp"
+        />
+    <TextView
+        android:id="@+id/signupHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/signUpTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Jobko"
+        android:textSize="30dp"
+        android:fontFamily="@font/roboto_mono_bold"
+        android:textColor="@color/black"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+    />
+    <TextView
+        android:id="@+id/signupSubHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/signupHeading"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Give creadential to sign up your account"
+        android:fontFamily="@font/roboto_mono_medium"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:textSize="15dp"
+        android:textColor="@color/black"
+
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
