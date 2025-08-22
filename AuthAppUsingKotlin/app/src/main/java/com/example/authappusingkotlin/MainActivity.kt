@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val authbtn = findViewById<Button>(R.id.authBtn);
         authbtn.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
+            val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
 
