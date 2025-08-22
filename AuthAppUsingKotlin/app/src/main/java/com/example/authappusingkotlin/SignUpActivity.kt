@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -14,11 +15,11 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 
 class SignUpActivity : AppCompatActivity() {
-    lateinit var fullname: EditText
-    lateinit var emailId:EditText
-    lateinit var pass:EditText
-    lateinit var confPass:EditText
-    lateinit var signupbtn:Button
+    private lateinit var fullname: EditText
+    private lateinit var emailId:EditText
+    private lateinit var pass:EditText
+    private lateinit var confPass:EditText
+    private lateinit var signupbtn:Button
     private lateinit var db:AppDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,11 +39,23 @@ class SignUpActivity : AppCompatActivity() {
             val pwd = pass.text.toString()
             val confpwd=confPass.text.toString()
 
-            lifecycleScope.launch {
-                db.userDao().insertUser(UserData(fullName = name, emaiId = email, pass = pwd, confPass = confpwd))
+            if (name.isNotEmpty()&&email.isNotEmpty()&&pwd.isNotEmpty()&&confpwd.isNotEmpty()) {
+                lifecycleScope.launch {
+                    db.userDao().insertUser(
+                        UserData(
+                            fullName = name,
+                            emaiId = email,
+                            pass = pwd,
+                            confPass = confpwd
+                        )
+                    )
+                }
+                val intent = Intent(this, SignInActivity::class.java)
+                startActivity(intent)
+                finish()
+            }else{
+                Toast.makeText(this,"Please fill all the details",Toast.LENGTH_SHORT).show()
             }
-            val intent = Intent(this, SignInActivity::class.java)
-            startActivity(intent)
         }
 
         signInTextbtn.setOnClickListener {

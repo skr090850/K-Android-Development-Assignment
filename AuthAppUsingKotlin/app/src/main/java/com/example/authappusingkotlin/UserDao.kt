@@ -11,4 +11,7 @@ interface UserDao {
 
     @Insert
     suspend fun insertUser(user: UserData)
+
+    @Query("SELECT * FROM user_table where emaiId = :email AND pass = :password LIMIT 1")
+    suspend fun findUser(email: String, password: String): UserData?
 }
