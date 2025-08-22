@@ -48,6 +48,7 @@
         android:fontFamily="@font/roboto_mono_medium"
         />
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/authBtn"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:layout_constraintStart_toStartOf="parent"
