@@ -110,6 +110,7 @@
                     app:layout_constraintTop_toBottomOf="@id/fullNameLabel">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signUpFullName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/gray"
@@ -153,6 +154,7 @@
                     app:layout_constraintTop_toBottomOf="@id/emailLabel">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signUpEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_mono_medium"
@@ -198,6 +200,7 @@
                     app:layout_constraintTop_toBottomOf="@id/passwordLabel">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signUpPass"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_mono_medium"
@@ -244,6 +247,7 @@
                     app:layout_constraintTop_toBottomOf="@id/confirmPasswordLabel">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signUpConfPass"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_mono_medium"
