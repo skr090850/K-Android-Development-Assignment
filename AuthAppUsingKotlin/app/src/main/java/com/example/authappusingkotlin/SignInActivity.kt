@@ -38,6 +38,8 @@ class SignInActivity : AppCompatActivity() {
                         Toast.makeText(this@SignInActivity, "Login Successful!", Toast.LENGTH_SHORT)
                             .show()
                         val intent = Intent(this@SignInActivity, DashboardActivity::class.java)
+                        intent.putExtra("EMAIL_ID",user.emaiId)
+                        intent.putExtra("FULL_NAME",user.fullName)
                         startActivity(intent)
                         finish()
                     } else {
