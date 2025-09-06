@@ -1,5 +1,4 @@
 package com.example.simplecalculator;
-
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -7,7 +6,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
